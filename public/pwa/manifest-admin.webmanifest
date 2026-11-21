@@ -1,0 +1,60 @@
+{
+  "name": "PITAHAYA · Panel",
+  "short_name": "PITAHAYA Panel",
+  "description": "Gestiona citas, calendario y cotizaciones de PITAHAYA Beauty Studio.",
+  "lang": "es-MX",
+  "start_url": "/gestion?source=pwa",
+  "scope": "/gestion/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fbefe3",
+  "theme_color": "#244941",
+  "icons": [
+    {
+      "src": "/pwa/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa/icon-maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/pwa/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Citas de hoy",
+      "url": "/gestion",
+      "icons": [
+        {
+          "src": "/pwa/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Calendario",
+      "url": "/gestion/calendario",
+      "icons": [
+        {
+          "src": "/pwa/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}

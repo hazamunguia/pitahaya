@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+/* Tokens PITAHAYA Beauty Studio (fuente: tokens.json del paquete de diseño) */
+@theme {
+  --color-pink: #ec6295;
+  --color-magenta: #ee228b;
+  --color-lime: #d5e739;
+  --color-forest: #244941;
+  --color-cream: #fbefe3;
+  --color-blush: #f9c9de;
+  --color-leaf: #2c5739;
+  --color-mint: #f5fffd;
+  --color-magenta-deep: #b80f67;
+  --color-card: #ffffff;
+  --color-sunken: #f5e4d3;
+  --color-muted: #4f6a63;
+  --color-line: #e6d6c6;
+
+  --color-pending-bg: #eef59a;
+  --color-done-bg: #cfe6d4;
+  --color-done-text: #1f4a2d;
+  --color-cancelled-bg: #e8dfd6;
+  --color-cancelled-text: #5f5247;
+  --color-quote-text: #8d0b4e;
+  --color-danger-bg: #fde4e4;
+  --color-danger-text: #a4161a;
+  --color-success-bg: #dff0e3;
+
+  --font-display: "Anton", Impact, sans-serif;
+  --font-sans: "Montserrat Variable", system-ui, sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-xl: 36px;
+
+  --shadow-sticker: 4px 4px 0 #244941;
+  --shadow-sticker-sm: 2px 2px 0 #244941;
+  --shadow-sticker-pink: 4px 4px 0 #ee228b;
+  --shadow-soft: 0 12px 32px rgba(36, 73, 65, 0.14);
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  background: var(--color-cream);
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-forest);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Títulos de marca: Anton, siempre en mayúsculas */
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 0.95;
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-magenta);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
