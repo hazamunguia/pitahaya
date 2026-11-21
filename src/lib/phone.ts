@@ -7,5 +7,5 @@ export function normalizePhone(input: string): string | null {
 
 /** Supabase Auth necesita correo: usamos uno interno derivado del celular. */
 export function phoneToEmail(phone10: string): string {
-  return `${phone10}@cel.pitahaya.app`;
+  return `${phone10}@users.mx`;
 }
