@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { normalizePhone, phoneToEmail } from "@/lib/phone";
 
 export type AuthState = { error?: string };
@@ -30,17 +31,22 @@ export async function crearCuenta(_prev: AuthState, form: FormData): Promise<Aut
   if (!phone) return { error: "Escribe tu celular de 10 dígitos." };
   if (password.length < MIN_PASSWORD) return { error: `Tu contraseña necesita al menos ${MIN_PASSWORD} caracteres.` };
 
-  const supabase = await createClient();
-  const { data, error } = await supabase.auth.signUp({
+  // Se crea con el cliente de servidor: cuenta ya confirmada y sin enviar ningún correo.
+  const admin = createAdminClient();
+  const { error } = await admin.auth.admin.createUser({
     email: phoneToEmail(phone),
     password,
-    options: { data: { nombre, celular: phone } },
+    email_confirm: true,
+    user_metadata: { nombre, celular: phone },
   });
   if (error) {
-    if (/registered|already/i.test(error.message)) return { error: "Ese celular ya tiene cuenta. Entra con tu contraseña." };
+    if (/registered|already|exists/i.test(error.message)) return { error: "Ese celular ya tiene cuenta. Entra con tu contraseña." };
     return { error: `No pudimos crear tu cuenta: ${error.message}` };
   }
-  if (!data.session) return { error: "Tu cuenta se creó, pero falta activar el acceso. Avísale a Karina." };
+
+  const supabase = await createClient();
+  const { error: loginError } = await supabase.auth.signInWithPassword({ email: phoneToEmail(phone), password });
+  if (loginError) return { error: "Tu cuenta se creó. Entra con tu celular y contraseña." };
   redirect("/cuenta/citas");
 }
 
