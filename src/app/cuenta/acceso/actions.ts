@@ -38,7 +38,7 @@ export async function crearCuenta(_prev: AuthState, form: FormData): Promise<Aut
   });
   if (error) {
     if (/registered|already/i.test(error.message)) return { error: "Ese celular ya tiene cuenta. Entra con tu contraseña." };
-    return { error: "No pudimos crear tu cuenta. Inténtalo de nuevo." };
+    return { error: `No pudimos crear tu cuenta: ${error.message}` };
   }
   if (!data.session) return { error: "Tu cuenta se creó, pero falta activar el acceso. Avísale a Karina." };
   redirect("/cuenta/citas");
