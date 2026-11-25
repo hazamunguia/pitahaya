@@ -1,0 +1,38 @@
+import Image from "next/image";
+import Link from "next/link";
+
+export default function Footer() {
+  return (
+    <footer className="bg-forest px-5 pb-7 pt-16 text-cream md:px-10">
+      <div className="mx-auto flex max-w-7xl flex-col gap-12 md:flex-row md:justify-between">
+        <div className="flex max-w-sm flex-col gap-5">
+          <Image src="/brand/logo/pitahaya-logo-horizontal-cream.svg" alt="PITAHAYA Beauty Studio" width={220} height={53} />
+          <p className="font-medium">Belleza con actitud. Uñas, pestañas y cuidado con diseño hecho a tu medida.</p>
+        </div>
+        <div className="grid grid-cols-2 gap-10 md:flex md:gap-16">
+          <div className="flex flex-col gap-3">
+            <p className="text-xs font-extrabold uppercase tracking-widest text-lime">Estudio</p>
+            <Link href="/#servicios" className="font-semibold">Servicios</Link>
+            <Link href="/#disenos" className="font-semibold">Diseños</Link>
+            <Link href="/#como" className="font-semibold">Cómo agendar</Link>
+          </div>
+          <div className="flex flex-col gap-3">
+            <p className="text-xs font-extrabold uppercase tracking-widest text-lime">Tu cuenta</p>
+            <Link href="/reservar" className="font-semibold">Agendar cita</Link>
+            <Link href="/cuenta/citas" className="font-semibold">Mis citas</Link>
+          </div>
+          <div className="col-span-2 flex flex-col gap-3 md:col-span-1">
+            <p className="text-xs font-extrabold uppercase tracking-widest text-lime">Visítanos</p>
+            <span className="font-semibold">[DIRECCIÓN DEL ESTUDIO]</span>
+            <span className="font-semibold">Lun a Sáb · 10:00 a 18:00</span>
+            <span className="font-semibold">[TELÉFONO / WHATSAPP]</span>
+          </div>
+        </div>
+      </div>
+      <div className="mx-auto mt-14 flex max-w-7xl justify-between gap-4 border-t border-lime pt-5 text-sm font-semibold">
+        <span>© 2026 PITAHAYA Beauty Studio</span>
+        <span>Aviso de privacidad · Términos</span>
+      </div>
+    </footer>
+  );
+}
