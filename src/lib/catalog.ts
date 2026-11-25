@@ -1,5 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
-import { cacheLife } from "next/cache";
+import { cacheLife, cacheTag } from "next/cache";
 
 // Cliente público (sin cookies): solo lee catálogos que las reglas de seguridad dejan ver a todos.
 function publicClient() {
@@ -15,6 +15,7 @@ export type Design = { id: string; nombre: string; precio_extra: number };
 export async function getServices(): Promise<Service[]> {
   "use cache";
   cacheLife("minutes");
+  cacheTag("catalogo");
   const { data } = await publicClient().from("services").select("id, slug, nombre, descripcion, duracion_min, precio_base, admite_diseno").eq("visible", true).order("orden");
   return (data as Service[]) ?? [];
 }
@@ -22,6 +23,7 @@ export async function getServices(): Promise<Service[]> {
 export async function getCourtesies(): Promise<Courtesy[]> {
   "use cache";
   cacheLife("minutes");
+  cacheTag("catalogo");
   const { data } = await publicClient().from("courtesies").select("id, nombre, icono").eq("disponible", true).order("orden");
   return (data as Courtesy[]) ?? [];
 }
@@ -29,8 +31,17 @@ export async function getCourtesies(): Promise<Courtesy[]> {
 export async function getDesigns(): Promise<Design[]> {
   "use cache";
   cacheLife("minutes");
+  cacheTag("catalogo");
   const { data } = await publicClient().from("designs").select("id, nombre, precio_extra").eq("visible", true).order("orden");
   return (data as Design[]) ?? [];
+}
+
+export async function getOpenDays(): Promise<number[]> {
+  "use cache";
+  cacheLife("minutes");
+  cacheTag("catalogo");
+  const { data } = await publicClient().from("availability_rules").select("dia_semana").eq("abierto", true);
+  return (data ?? []).map((r: { dia_semana: number }) => r.dia_semana);
 }
 
 export function formatDuration(min: number) {

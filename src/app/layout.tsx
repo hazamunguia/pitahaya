@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "@fontsource/anton/400.css";
 import "@fontsource-variable/montserrat/wght.css";
 import "./globals.css";
+import PwaRegister from "@/components/PwaRegister";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
@@ -25,7 +26,10 @@ export const viewport: Viewport = { themeColor: "#ec6295", width: "device-width"
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es-MX">
-      <body>{children}</body>
+      <body>
+        {children}
+        <PwaRegister />
+      </body>
     </html>
   );
 }

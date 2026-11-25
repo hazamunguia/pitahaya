@@ -1,5 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { safeNext } from "@/lib/next-url";
 
 /** Refresca la sesión en cada petición y protege /cuenta y /gestion. */
 export async function updateSession(request: NextRequest) {
@@ -24,16 +25,18 @@ export async function updateSession(request: NextRequest) {
   const signedIn = !!data?.claims;
   const path = request.nextUrl.pathname;
 
-  const needsLogin = (path.startsWith("/cuenta") && !path.startsWith("/cuenta/acceso")) || path.startsWith("/gestion");
+  const needsLogin = (path.startsWith("/cuenta") && !path.startsWith("/cuenta/acceso")) || path.startsWith("/gestion") || path.startsWith("/reservar");
   if (needsLogin && !signedIn) {
     const url = request.nextUrl.clone();
     url.pathname = "/cuenta/acceso";
     url.search = "";
+    if (path.startsWith("/reservar")) url.searchParams.set("next", "/reservar");
     return NextResponse.redirect(url);
   }
   if (path.startsWith("/cuenta/acceso") && signedIn) {
     const url = request.nextUrl.clone();
-    url.pathname = "/cuenta/citas";
+    url.pathname = safeNext(request.nextUrl.searchParams.get("next"), "/cuenta/citas");
+    url.search = "";
     return NextResponse.redirect(url);
   }
   return response;

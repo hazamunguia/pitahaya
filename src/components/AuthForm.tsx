@@ -8,7 +8,7 @@ const initial: AuthState = {};
 const input =
   "min-h-12 w-full rounded-md border-[1.5px] border-forest bg-white px-4 text-base font-medium text-forest placeholder:text-muted focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-magenta";
 
-export default function AuthForm() {
+export default function AuthForm({ next }: { next?: string }) {
   const [mode, setMode] = useState<"entrar" | "crear">("entrar");
   const [loginState, loginAction, loginPending] = useActionState(entrar, initial);
   const [signupState, signupAction, signupPending] = useActionState(crearCuenta, initial);
@@ -39,6 +39,7 @@ export default function AuthForm() {
           <h1 className="display text-4xl">{isLogin ? "Entra con tu celular" : "Crea tu cuenta"}</h1>
 
           <form action={isLogin ? loginAction : signupAction} className="mt-5 flex flex-col gap-4" key={mode}>
+            {next && <input type="hidden" name="next" value={next} />}
             {!isLogin && (
               <label className="flex flex-col gap-1.5 text-sm font-bold">
                 Nombre

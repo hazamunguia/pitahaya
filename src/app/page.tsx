@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import Icon from "@/components/Icon";
 import Nav, { Announce } from "@/components/Nav";
 import { formatDuration, getCourtesies, getDesigns, getServices } from "@/lib/catalog";
+import { getStudioInfo } from "@/lib/studio";
 
 const money = (n: number) => `$${Number(n).toLocaleString("es-MX")}`;
 
@@ -73,6 +74,11 @@ const steps = [
   ["4", "Pide tu cortesía", "Café, agua de sabor, té o una cosita para brindar."],
 ];
 
+async function Ciudad() {
+  const { ciudad } = await getStudioInfo();
+  return <>Beauty Studio{ciudad ? ` · ${ciudad}` : ""}</>;
+}
+
 export default function Home() {
   return (
     <>
@@ -84,7 +90,7 @@ export default function Home() {
           <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 pb-20 pt-12 lg:grid-cols-[1.25fr_1fr] md:px-10 md:pb-28 md:pt-16">
             <div className="relative z-10 flex flex-col gap-6">
               <Image src="/brand/logo/pitahaya-mark.png" alt="" width={150} height={150} className="pointer-events-none absolute -right-12 top-6 -z-10 size-[150px] rotate-[8deg] lg:hidden" />
-              <p className="text-xs font-extrabold uppercase tracking-[.14em]">Beauty Studio · [CIUDAD]</p>
+              <p className="text-xs font-extrabold uppercase tracking-[.14em]"><Suspense fallback="Beauty Studio"><Ciudad /></Suspense></p>
               <h1 className="display text-[84px] leading-[.92] text-forest md:text-[120px] lg:text-[160px] lg:leading-[.9]">
                 Belleza<br />con <span className="text-cream">actitud</span>.
               </h1>

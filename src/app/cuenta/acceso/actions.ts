@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { normalizePhone, phoneToEmail } from "@/lib/phone";
+import { safeNext } from "@/lib/next-url";
 
 export type AuthState = { error?: string };
 
@@ -20,7 +21,7 @@ export async function entrar(_prev: AuthState, form: FormData): Promise<AuthStat
   if (error) return { error: "Celular o contraseña incorrectos." };
 
   const { data: perfil } = await supabase.from("profiles").select("role").maybeSingle();
-  redirect(perfil?.role === "owner" ? "/gestion" : "/cuenta/citas");
+  redirect(perfil?.role === "owner" ? "/gestion" : safeNext(form.get("next"), "/cuenta/citas"));
 }
 
 export async function crearCuenta(_prev: AuthState, form: FormData): Promise<AuthState> {
@@ -47,7 +48,7 @@ export async function crearCuenta(_prev: AuthState, form: FormData): Promise<Aut
   const supabase = await createClient();
   const { error: loginError } = await supabase.auth.signInWithPassword({ email: phoneToEmail(phone), password });
   if (loginError) return { error: "Tu cuenta se creó. Entra con tu celular y contraseña." };
-  redirect("/cuenta/citas");
+  redirect(safeNext(form.get("next"), "/cuenta/citas"));
 }
 
 export async function salir() {
