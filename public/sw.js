@@ -27,3 +27,6 @@ self.addEventListener("notificationclick", (event) => {
     }),
   );
 });
+
+// Requerido por algunos navegadores para ofrecer "Instalar app". No intercepta nada.
+self.addEventListener("fetch", () => {});
