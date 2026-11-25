@@ -17,7 +17,7 @@ export default function Button({ href, children, kind = "primary", size = "md", 
   href: string; children: React.ReactNode; kind?: Kind; size?: Size; arrow?: boolean; className?: string;
 }) {
   return (
-    <Link href={href} className={`inline-flex items-center justify-center gap-2 rounded-full border-[1.5px] font-bold transition-transform hover:-translate-y-0.5 ${kinds[kind]} ${sizes[size]} ${className}`}>
+    <Link href={href} className={`inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border-[1.5px] font-bold transition-transform hover:-translate-y-0.5 ${kinds[kind]} ${sizes[size]} ${className}`}>
       {children}
       {arrow && <Icon name="arrow-right" size={size === "lg" ? 22 : 20} stroke={2.4} />}
     </Link>

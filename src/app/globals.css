@@ -58,13 +58,15 @@ body {
 }
 
 /* Títulos de marca: Anton, siempre en mayúsculas */
-.display {
-  font-family: var(--font-display);
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  line-height: 0.95;
-  margin: 0;
+@layer components {
+  .display {
+    font-family: var(--font-display);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    line-height: 1.02;
+    margin: 0;
+  }
 }
 
 :focus-visible {

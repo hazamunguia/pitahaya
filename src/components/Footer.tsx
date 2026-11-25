@@ -3,8 +3,8 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-forest px-5 pb-7 pt-16 text-cream md:px-10">
-      <div className="mx-auto flex max-w-7xl flex-col gap-12 md:flex-row md:justify-between">
+    <footer className="bg-forest pb-7 pt-16 text-cream">
+      <div className="mx-auto flex max-w-7xl flex-col gap-12 px-5 md:flex-row md:justify-between md:px-10">
         <div className="flex max-w-sm flex-col gap-5">
           <Image src="/brand/logo/pitahaya-logo-horizontal-cream.svg" alt="PITAHAYA Beauty Studio" width={220} height={53} />
           <p className="font-medium">Belleza con actitud. Uñas, pestañas y cuidado con diseño hecho a tu medida.</p>
@@ -29,10 +29,10 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="mx-auto mt-14 flex max-w-7xl justify-between gap-4 border-t border-lime pt-5 text-sm font-semibold">
+      <div className="mx-auto mt-14 max-w-7xl px-5 md:px-10"><div className="flex flex-col justify-between gap-2 border-t border-lime pt-5 text-sm font-semibold sm:flex-row sm:gap-4">
         <span>© 2026 PITAHAYA Beauty Studio</span>
         <span>Aviso de privacidad · Términos</span>
-      </div>
+      </div></div>
     </footer>
   );
 }

@@ -17,17 +17,17 @@ async function Services() {
         <Link
           key={s.id}
           href="/reservar"
-          className="grid grid-cols-[auto_1fr_auto] items-center gap-x-4 gap-y-1 border-t-[2.5px] border-forest px-2 py-6 transition-colors hover:bg-blush/50 md:grid-cols-[72px_1.3fr_1.4fr_110px_150px_56px] md:gap-6 md:px-4"
+          className="grid grid-cols-[2.75rem_1fr_auto] items-center gap-x-4 gap-y-1 border-t-[2.5px] border-forest px-2 py-6 transition-colors hover:bg-blush/50 lg:grid-cols-[72px_1.6fr_1.3fr_120px_150px_56px] lg:gap-6 md:px-4"
         >
           <span className="display text-2xl text-magenta-deep md:text-3xl">{String(i + 1).padStart(2, "0")}</span>
-          <span className="display text-4xl leading-none md:text-6xl">{s.nombre}</span>
-          <span className="col-span-3 text-base font-semibold leading-normal md:col-span-1">{s.descripcion}</span>
-          <span className="hidden items-center gap-2 text-sm font-bold md:flex"><Icon name="clock" size={18} />{formatDuration(s.duracion_min)}</span>
+          <span className="display col-span-2 text-4xl leading-none md:text-5xl lg:col-span-1">{s.nombre}</span>
+          <span className="col-span-3 text-base font-semibold leading-normal lg:col-span-1">{s.descripcion}</span>
+          <span className="hidden items-center gap-2 text-sm font-bold lg:flex"><Icon name="clock" size={18} />{formatDuration(s.duracion_min)}</span>
           <span className="display col-span-2 text-3xl text-magenta-deep md:col-span-1 md:text-4xl">
             {money(s.precio_base)}
             {s.admite_diseno && <span className="ml-1 font-sans text-xs font-bold tracking-wider text-muted">DESDE</span>}
           </span>
-          <span className="hidden size-13 place-items-center justify-self-end rounded-full border-[1.5px] border-forest bg-lime md:grid">
+          <span className="hidden size-13 place-items-center justify-self-end rounded-full border-[1.5px] border-forest bg-lime lg:grid">
             <Icon name="arrow-up-right" size={24} stroke={2.4} />
           </span>
         </Link>
@@ -54,7 +54,7 @@ async function Courtesies() {
 async function Designs() {
   const items = await getDesigns();
   return (
-    <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+    <div className="grid grid-cols-2 content-start gap-4 md:grid-cols-4">
       {items.map((d) => (
         <div key={d.id} className="rounded-lg border-2 border-forest bg-cream p-4 text-forest shadow-sticker-sm">
           <div className="grid h-24 place-items-center rounded-md bg-blush"><Icon name="palette" size={36} stroke={1.8} /></div>
@@ -81,21 +81,22 @@ export default function Home() {
       <main>
         {/* Hero */}
         <section className="relative overflow-hidden border-b-[2.5px] border-forest bg-pink">
-          <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 pb-20 pt-12 md:grid-cols-[1.25fr_1fr] md:px-10 md:pb-28 md:pt-16">
+          <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 pb-20 pt-12 lg:grid-cols-[1.25fr_1fr] md:px-10 md:pb-28 md:pt-16">
             <div className="relative z-10 flex flex-col gap-6">
+              <Image src="/brand/logo/pitahaya-mark.png" alt="" width={150} height={150} className="pointer-events-none absolute -right-12 top-6 -z-10 size-[150px] rotate-[8deg] lg:hidden" />
               <p className="text-xs font-extrabold uppercase tracking-[.14em]">Beauty Studio · [CIUDAD]</p>
-              <h1 className="display text-[84px] leading-[.88] text-forest md:text-[160px] md:leading-[.86]">
+              <h1 className="display text-[84px] leading-[.92] text-forest md:text-[120px] lg:text-[160px] lg:leading-[.9]">
                 Belleza<br />con <span className="text-cream">actitud</span>.
               </h1>
               <p className="max-w-xl text-lg font-bold leading-normal md:text-xl">
                 Manicure, pedicure, acrílicas y lifting de pestañas con diseños hechos a tu medida. Agenda en minutos, llega y disfruta tu cortesía.
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-col gap-4 sm:flex-row">
                 <Button href="/reservar" size="lg" arrow>Agendar mi cita</Button>
                 <Button href="/#servicios" size="lg" kind="light">Ver servicios</Button>
               </div>
             </div>
-            <div className="relative hidden h-[520px] md:block">
+            <div className="relative hidden h-[520px] lg:block">
               <Image src="/brand/logo/pitahaya-mark.png" alt="" width={520} height={520} className="absolute -right-10 top-0 rotate-[8deg]" />
               <div className="absolute bottom-8 right-0 -rotate-[4deg] rounded-full border-[2.5px] border-forest bg-lime px-6 py-3.5 shadow-sticker">
                 <span className="display text-2xl">Cortesía incluida</span>
@@ -125,7 +126,7 @@ export default function Home() {
 
         {/* Diseños */}
         <section id="disenos" className="scroll-mt-4 bg-forest py-16 text-cream md:py-24">
-          <div className="mx-auto grid max-w-7xl gap-10 px-5 md:grid-cols-[1fr_2fr] md:gap-14 md:px-10">
+          <div className="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-[1fr_2fr] md:gap-14 md:px-10">
             <div className="flex flex-col gap-6">
               <p className="text-xs font-extrabold uppercase tracking-[.14em] text-lime">Diseños</p>
               <h2 className="display text-5xl md:text-7xl">Elige tu diseño. O tráenos el tuyo.</h2>
@@ -148,7 +149,7 @@ export default function Home() {
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {steps.map(([n, t, d]) => (
                 <div key={n} className="rounded-lg border-[2.5px] border-forest bg-white p-7 shadow-sticker">
-                  <div className="display text-[96px] leading-[.8] text-magenta">{n}</div>
+                  <div className="display text-[64px] leading-[.85] text-magenta md:text-[96px]">{n}</div>
                   <div className="display mt-5 text-3xl">{t}</div>
                   <p className="mt-2.5 text-[15px] font-medium">{d}</p>
                 </div>
@@ -160,7 +161,7 @@ export default function Home() {
         {/* Cortesías */}
         <section id="cortesias" className="scroll-mt-4 border-b-[2.5px] border-forest bg-lime py-16 md:py-24">
           <div className="mx-auto max-w-7xl px-5 md:px-10">
-            <div className="grid items-center gap-10 rounded-xl border-[2.5px] border-forest bg-white p-7 shadow-sticker md:grid-cols-[1fr_1.4fr] md:gap-12 md:p-12">
+            <div className="grid items-center gap-10 rounded-xl border-[2.5px] border-forest bg-white p-7 shadow-sticker lg:grid-cols-[1fr_1.4fr] md:gap-12 md:p-12">
               <div className="flex flex-col gap-5">
                 <p className="text-xs font-extrabold uppercase tracking-[.14em] text-magenta-deep">Cortesía de la casa</p>
                 <h2 className="display text-5xl md:text-6xl">Cada cita incluye algo rico</h2>
@@ -175,7 +176,7 @@ export default function Home() {
 
         {/* Charms */}
         <section className="bg-cream py-16 md:py-24">
-          <div className="mx-auto grid max-w-7xl items-center gap-8 px-5 md:grid-cols-[1.2fr_1fr] md:px-10">
+          <div className="mx-auto grid max-w-7xl items-center gap-8 px-5 lg:grid-cols-[1.2fr_1fr] md:px-10">
             <div className="flex flex-col gap-5">
               <p className="text-xs font-extrabold uppercase tracking-[.14em] text-magenta-deep">Programa de charms</p>
               <h2 className="display text-5xl md:text-7xl">Cada visita suma</h2>
@@ -196,13 +197,13 @@ export default function Home() {
         <section className="bg-magenta-deep py-16 text-white md:py-24">
           <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-10 px-5 md:flex-row md:items-center md:px-10">
             <div className="flex flex-col gap-7">
-              <h2 className="display text-6xl md:text-9xl">Tu próxima cita empieza aquí</h2>
-              <div className="flex flex-wrap gap-4">
+              <h2 className="display text-6xl leading-[1.05] md:text-8xl lg:text-9xl">Tu próxima cita empieza aquí</h2>
+              <div className="flex flex-col gap-4 sm:flex-row">
                 <Button href="/reservar" size="lg" kind="secondary" arrow>Agendar ahora</Button>
                 <Button href="/cuenta/acceso" size="lg" kind="light">Entrar a mi cuenta</Button>
               </div>
             </div>
-            <Image src="/brand/logo/pitahaya-face.png" alt="" width={260} height={260} className="hidden -rotate-[8deg] md:block" />
+            <Image src="/brand/logo/pitahaya-mark.png" alt="" width={280} height={280} className="hidden shrink-0 -rotate-[8deg] lg:block" />
           </div>
         </section>
       </main>

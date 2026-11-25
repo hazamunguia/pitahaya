@@ -27,10 +27,10 @@ export default function Nav() {
   return (
     <header className="border-b-2 border-forest bg-cream">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 md:h-[84px] md:px-10">
-        <Link href="/" aria-label="PITAHAYA, inicio">
-          <Image src="/brand/logo/pitahaya-logo-horizontal-forest.svg" alt="PITAHAYA Beauty Studio" width={190} height={46} priority className="h-9 w-auto md:h-11" />
+        <Link href="/" aria-label="PITAHAYA, inicio" className="shrink-0">
+          <Image src="/brand/logo/pitahaya-logo-horizontal-forest.svg" alt="PITAHAYA Beauty Studio" width={190} height={46} priority className="h-8 w-auto shrink-0 md:h-11" />
         </Link>
-        <nav aria-label="Principal" className="hidden items-center gap-9 md:flex">
+        <nav aria-label="Principal" className="hidden items-center gap-9 xl:flex">
           {NAV_LINKS.map((l) => (
             <Link key={l.n} href={l.h} className="text-sm font-bold uppercase tracking-[.08em] hover:underline">
               {l.n}
@@ -38,11 +38,13 @@ export default function Nav() {
           ))}
         </nav>
         <div className="flex items-center gap-3">
-          <Link href="/cuenta/acceso" className="hidden items-center gap-2 text-sm font-bold md:flex">
+          <Link href="/cuenta/acceso" className="hidden items-center gap-2 text-sm font-bold xl:flex">
             <Icon name="user" size={18} /> Mi cuenta
           </Link>
-          <Button href="/reservar" size="md" arrow className="hidden sm:inline-flex">Agendar cita</Button>
-          <details className="relative md:hidden">
+          <div className="hidden sm:block">
+            <Button href="/reservar" size="md" arrow>Agendar cita</Button>
+          </div>
+          <details className="relative xl:hidden">
             <summary aria-label="Abrir menú" className="grid size-11 cursor-pointer list-none place-items-center rounded-full border-[1.5px] border-forest bg-white [&::-webkit-details-marker]:hidden">
               <Icon name="menu" size={22} />
             </summary>
